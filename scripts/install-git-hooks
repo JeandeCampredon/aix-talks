@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+echo "Going to the top level git folder"
+cd $(git rev-parse --show-toplevel)
+echo "Installing git hooks."
+rm -rf ./.git/hooks
+ln -s ../githooks ./.git/hooks
+echo "Git hooks installed."
+ls -l ./.git/hooks/*
+``

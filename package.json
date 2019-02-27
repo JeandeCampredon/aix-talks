@@ -1,0 +1,30 @@
+{
+  "name": "aix-talks",
+  "version": "0.0.1",
+  "description": "this is a small repository to implements our talks building a small and convenient app for aix talkers",
+  "main": "index.js",
+  "author": "Jean de Campredon <jean.decampredon@gmail.com>",
+  "license": "MIT",
+  "installConfig": {
+    "pnp": false
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^4.0.0",
+    "eslint-plugin-import": "^2.16.0",
+    "eslint-plugin-jsx": "^0.0.2",
+    "eslint-plugin-jsx-a11y": "^6.2.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-react-hooks": "^1.0.1",
+    "import-sort-style-weassur": "git+ssh://git@github.com:weassur/import-sort-style.git",
+    "lerna": "^3.4.3",
+    "prettier": "^1.16.4"
+  },
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ]
+}

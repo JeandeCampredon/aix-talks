@@ -1,0 +1,77 @@
+#!/usr/bin/env node
+
+const fs = require('fs');
+
+const MAX_LENGTH = 150;
+// eslint-disable-next-line
+const PATTERN = /^(?<type>\w*)(\((?<scope>[\w-]+)\))?\:\s(?<description>[^\n]+)(\n\n(?<body>[^\n#]+))?(\n\n(?<footer>[^\n#]+))?/;
+// eslint-disable-next-line
+const IGNORED = /^WIP\:/;
+const TYPES = {
+  feat: true,
+  fix: true,
+  docs: true,
+  style: true,
+  refactor: true,
+  perf: true,
+  test: true,
+  chore: true,
+  revert: true,
+  improve: true,
+};
+
+const errorLog = arg => console.error(`INVALID COMMIT MSG: ${arg}`);
+
+function validateMessage(message) {
+  if (IGNORED.test(message)) {
+    console.log('Commit message validation ignored.');
+    return true;
+  }
+
+  const match = PATTERN.exec(message);
+
+  if (!match) {
+    errorLog(
+      `commit msg does not match
+      <type>[<scope>]: <description>
+
+      body
+
+      footer
+
+      the message was ${message}`
+    );
+    return false;
+  }
+
+  const {
+    type = '',
+    scope = '',
+    description = '',
+  } = match.groups;
+
+  if (!TYPES[type]) {
+    errorLog(`"${type}" is not allowed type!`);
+    return false;
+  }
+
+  if (type.length + scope.length + description.length > MAX_LENGTH) {
+    errorLog(`title line is too long`);
+    return false
+  }
+
+  return true;
+}
+
+const commitMsgFile = process.argv[2];
+const incorrectLogFile = commitMsgFile.replace('COMMIT_EDITMSG', 'logs/incorrect-commit-msgs');
+
+fs.readFile(commitMsgFile, (err, buffer) => {
+  if (err) process.exit(1);
+
+  const msg = buffer.toString();
+
+  if (validateMessage(msg)) process.exit(0);
+
+  fs.appendFile(incorrectLogFile, `${msg}\n`, () => process.exit(1));
+});
