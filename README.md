@@ -6,7 +6,7 @@ Link for the [meetup](https://www.meetup.com/fr-FR/Aix-Talks)
 
 ## Getting Started
 
-If something doesn’t work, please [file an issue](https://github.com/FabienGreard/fakeStoreJs/issues/new) :bug:.
+If something doesn’t work, please [file an issue](https://github.com/JeandeCampredon/aix-talks/issues/new) :bug:.
 
 ### Prerequisites
 
