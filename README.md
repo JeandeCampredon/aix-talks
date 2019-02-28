@@ -4,8 +4,6 @@ Welcome to AixTalks repo. :fire:
 
 Link for the [meetup](https://www.meetup.com/fr-FR/Aix-Talks)
 
-if something doesn't works for any reasons please fill an issue
-
 ## Getting Started
 
 If something doesn’t work, please [file an issue](https://github.com/FabienGreard/fakeStoreJs/issues/new) :bug:.
