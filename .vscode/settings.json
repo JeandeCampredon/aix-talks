@@ -1,5 +1,4 @@
 {
   "sort-imports.on-save": true,
-  "sort-imports.default-sort-style": "weassur",
   "prettier.eslintIntegration": true
 }

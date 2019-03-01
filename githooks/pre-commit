@@ -7,8 +7,8 @@ cd $(git rev-parse --show-toplevel)
 current_branch=$(git rev-parse --abbrev-ref HEAD)
 
 echo "current branch is $current_branch"
-develop_ancestor=`git merge-base origin/develop $current_branch`
-release_ancestor=`git merge-base origin/release $current_branch`
+develop_ancestor=`git merge-base origin/master $current_branch`
+release_ancestor=`git merge-base origin/master $current_branch`
 develop_distance=`git log $develop_ancestor..$current_branch --oneline | wc -l`
 release_distance=`git log $release_ancestor..$current_branch --oneline | wc -l`
 
@@ -17,9 +17,9 @@ if [[ ($develop_distance -eq 0) || ($release_distance -eq 0) ]]; then
 fi
 
 if [[ $develop_distance -gt $release_distance ]]; then
-    compare_banch="origin/release"
+    compare_banch="origin/master"
 else
-    compare_banch="origin/develop"
+    compare_banch="origin/master"
 fi
 
 allow_push=true
