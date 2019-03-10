@@ -1,3 +1,20 @@
 #!/bin/sh
+diff_js_files=`git diff origin/master --name-only | grep -e [.]js$`
+if [[ ! -z $diff_js_files ]]; then
+    echo "Running eslint before pushing"
+
+    eslint_output=`./node_modules/.bin/eslint $diff_js_files`
+    eslint_exit_status=$?
+
+    if [ ${eslint_exit_status} -ne 0 ]; then
+        echo "/!\ eslinting failed"
+        echo "$eslint_output"
+        echo "not allowed to push"
+        exit 1
+    else
+        echo "eslint succeed"
+    fi
+fi
+
 command -v git-lfs >/dev/null 2>&1 || { echo >&2 "\nThis repository is configured for Git LFS but 'git-lfs' was not found on your path. If you no longer wish to use Git LFS, remove this hook by deleting .git/hooks/pre-push.\n"; exit 2; }
 git lfs pre-push "$@"
