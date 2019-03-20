@@ -11,11 +11,13 @@ async function start() {
         scope: './controlled',
       })
       .then(registration => {
+        // eslint-disable-next-line no-console
         console.log('Service Worker Registered');
         registration.update();
       });
 
     navigator.serviceWorker.ready.then(() => {
+      // eslint-disable-next-line no-console
       console.log('Service Worker Ready');
     });
   }
