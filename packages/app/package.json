@@ -7,8 +7,10 @@
     "pnp": false
   },
   "scripts": {
-    "dev": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "dev": "parcel src/index.html --open",
+    "clean": "rm -rf ./dist",
+    "build": "parcel build src/index.html --out-dir dist/static --public-url /static --detailed-report",
+    "deploy": "yarn clean && yarn build && cp now.json dist/ && cd dist && now --public"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-0",
@@ -21,6 +23,7 @@
     "@babel/plugin-proposal-throw-expressions": "^7.2.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
     "@babel/plugin-syntax-import-meta": "^7.2.0",
+    "@babel/plugin-transform-runtime": "^7.3.4",
     "@babel/preset-react": "^7.0.0",
     "@emotion/babel-preset-css-prop": "^10.0.7",
     "babel-plugin-css-modules-transform": "^1.6.2",
@@ -38,6 +41,7 @@
     "@emotion/styled": "^10.0.7",
     "add": "^2.0.6",
     "bowser": "^2.1.0",
+    "intl": "^1.2.5",
     "polished": "^3.0.0",
     "prop-types": "^15.7.2",
     "react": ">=16.3.0",

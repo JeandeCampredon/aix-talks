@@ -5,6 +5,9 @@
   "main": "index.js",
   "author": "Jean de Campredon <jean.decampredon@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "pre-install": "rm -rf node_modules/import-sort-style-aix-talks"
+  },
   "installConfig": {
     "pnp": false
   },
@@ -19,9 +22,15 @@
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-react-hooks": "^1.0.1",
+    "import-sort-style-aix-talks": "file:./packages/sort-styles",
     "lerna": "^3.4.3",
     "prettier": "^1.16.4"
   },
   "private": true,
-  "workspaces": ["packages/*"]
+  "workspaces": {
+    "packages": [
+      "packages/*",
+      "demos/*"
+    ]
+  }
 }

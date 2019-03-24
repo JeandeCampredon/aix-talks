@@ -1,28 +1,4 @@
 #!/usr/bin/env bash
-
-# Running grunt eslint before pushing
-
-echo "Going to the top level folder"
-cd $(git rev-parse --show-toplevel)
-current_branch=$(git rev-parse --abbrev-ref HEAD)
-
-echo "current branch is $current_branch"
-develop_ancestor=`git merge-base origin/master $current_branch`
-release_ancestor=`git merge-base origin/master $current_branch`
-develop_distance=`git log $develop_ancestor..$current_branch --oneline | wc -l`
-release_distance=`git log $release_ancestor..$current_branch --oneline | wc -l`
-
-if [[ ($develop_distance -eq 0) || ($release_distance -eq 0) ]]; then
-    echo "it seems your branch is not diverging from develop or release"
-fi
-
-if [[ $develop_distance -gt $release_distance ]]; then
-    compare_banch="origin/master"
-else
-    compare_banch="origin/master"
-fi
-
-allow_push=true
 diff_js_files=$(git diff --cached --name-only --diff-filter=ACM "*.js" "*.jsx" | tr '\n' ' ')
 
 if [[ ! -z $diff_js_files ]]; then

@@ -136,6 +136,19 @@ const textSection = css`
   }
 `;
 
+const oneDate = new Date(2019, 0, 17, 23);
+const nbOfMsByDay = 24 * 60 * 60 * 1000;
+const formatter = new Intl.DateTimeFormat('fr-FR', {
+  weekday: 'long',
+  month: 'long',
+  day: 'numeric',
+});
+const nowDate = Date.now();
+const nbOfDays = (nowDate.valueOf() - oneDate.valueOf()) / nbOfMsByDay;
+const nextDate = new Date(oneDate);
+nextDate.setDate(nextDate.getDate() + Math.ceil(nbOfDays / 14) * 14);
+const nextDay = formatter.format(nextDate).toUpperCase();
+
 const Home = () => {
   return (
     <div css={homeContainer}>
@@ -145,7 +158,7 @@ const Home = () => {
       <section css={nextEventSection}>
         <h3>
           PROCHAINE ÉDITION <br />
-          <strong>LE 28 février 2019 À 19H</strong>
+          <strong>{nextDay} À 19H</strong>
         </h3>
       </section>
       <section css={descriptionSection}>

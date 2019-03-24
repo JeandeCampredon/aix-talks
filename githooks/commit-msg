@@ -4,7 +4,7 @@ const fs = require('fs');
 
 const MAX_LENGTH = 150;
 // eslint-disable-next-line
-const PATTERN = /^(?<type>\w*)(\((?<scope>[\w-]+)\))?\:\s(?<description>[^\n]+)(\n\n(?<body>[^\n#]+))?(\n\n(?<footer>[^\n#]+))?/;
+const PATTERN = /^(?<type>\w*)([[(](?<scope>[\w-]+)[)\]])?:\s(?<description>[^\n]+)(\n\n(?<body>[^\n#]+))?(\n\n(?<footer>[^\n#]+))?/;
 // eslint-disable-next-line
 const IGNORED = /^WIP\:/;
 const TYPES = {
