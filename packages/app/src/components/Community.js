@@ -2,26 +2,21 @@ import React from 'react';
 
 import { css } from '@emotion/core';
 
+import defaultUserSrc from '../../resources/icons/default-user-image.png';
 import { colors, screenSizes, spacing } from '../theme';
 
 const ORGANIZERS = [
   {
     name: `Nicolas Giraudo`,
     title: 'Le Freelance grandiose',
-    img:
-      'http://www.eludice.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png',
   },
   {
     name: `Fabien Gréard`,
     title: 'Le CTO magique',
-    img:
-      'http://www.eludice.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png',
   },
   {
     name: `Jean de Campredon`,
     title: 'Le Lead Dev du futur',
-    img:
-      'http://www.eludice.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png',
   },
 ];
 
@@ -30,14 +25,10 @@ const TALKERS = [
   {
     name: `Eric Müllenbach`,
     title: 'Le génie du chaos',
-    img:
-      'http://www.eludice.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png',
   },
   {
     name: `Daniil GORBATENKO `,
     title: 'Le libre analyste',
-    img:
-      'http://www.eludice.com/wp-content/plugins/all-in-one-seo-pack/images/default-user-image.png',
   },
 ];
 
@@ -90,7 +81,7 @@ const Community = () => {
       <h1 css={titleStyle}>COMMUNAUTÉ</h1>
       <h2 css={titleStyle}>INTERVENANTS</h2>
       <div css={usersContainer}>
-        {TALKERS.map(({ name, title, img }) => (
+        {TALKERS.map(({ name, title, img = defaultUserSrc }) => (
           <div css={user} key={name}>
             <img src={img} alt="" />
             <h3>{name}</h3>
@@ -100,7 +91,7 @@ const Community = () => {
       </div>
       <h2 css={titleStyle}>ORGANISATEURS</h2>
       <div css={usersContainer}>
-        {ORGANIZERS.map(({ name, title, img }) => (
+        {ORGANIZERS.map(({ name, title, img = defaultUserSrc }) => (
           <div css={user} key={name}>
             <img src={img} alt="" />
             <h3>{name}</h3>

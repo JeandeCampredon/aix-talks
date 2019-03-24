@@ -136,20 +136,18 @@ const textSection = css`
   }
 `;
 
-const nextDates = [
-  new Date(2019, 2, 14, 23),
-  new Date(2019, 2, 28, 23),
-  new Date(2019, 3, 11, 23),
-  new Date(2019, 3, 25, 23),
-  new Date(2019, 4, 9, 23),
-  new Date(2019, 4, 23, 23),
-];
+const oneDate = new Date(2019, 0, 17, 23);
+const nbOfMsByDay = 24 * 60 * 60 * 1000;
 const formatter = new Intl.DateTimeFormat('fr-FR', {
   weekday: 'long',
   month: 'long',
   day: 'numeric',
 });
-const nextDay = formatter.format(nextDates.find(d => d > Date.now())).toUpperCase();
+const nowDate = Date.now();
+const nbOfDays = (nowDate.valueOf() - oneDate.valueOf()) / nbOfMsByDay;
+const nextDate = new Date(oneDate);
+nextDate.setDate(nextDate.getDate() + Math.ceil(nbOfDays / 14) * 14);
+const nextDay = formatter.format(nextDate).toUpperCase();
 
 const Home = () => {
   return (

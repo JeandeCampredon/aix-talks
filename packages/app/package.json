@@ -7,10 +7,10 @@
     "pnp": false
   },
   "scripts": {
-    "dev": "parcel src/index.html",
+    "dev": "parcel src/index.html --open",
     "clean": "rm -rf ./dist",
-    "build": "parcel build src/index.html",
-    "deploy": "yarn clean && yarn build && cp now-package.json dist/package.json && cd dist && now --public"
+    "build": "parcel build src/index.html --out-dir dist/static --public-url /static --detailed-report",
+    "deploy": "yarn clean && yarn build && cp now.json dist/ && cd dist && now --public"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-0",

@@ -1,6 +1,6 @@
 /* eslint-disable */
-var OLD_CACHE = 'hello-world-page';
-var CACHE = '--aix-talks-cache--';
+const OLD_CACHE = 'hello-world-page';
+const CACHE = '--aix-talks-cache--';
 const filesToCache = ['/', '/index.html'];
 
 self.addEventListener('install', function(event) {
@@ -59,7 +59,7 @@ function update(request) {
 function askRefresh() {
   return self.clients.matchAll().then(function(clients) {
     clients.forEach(function(client) {
-      var message = { type: 'refresh' };
+      const message = { type: 'refresh' };
       client.postMessage(JSON.stringify(message));
     });
   });
