@@ -10,7 +10,7 @@ import Community from '../../resources/images/community.jpg';
 import Conference from '../../resources/images/conference.jpeg';
 import Happiness from '../../resources/images/happiness.jpg';
 import { colors, screenSizes, screenSizesUnit, screenSizesValues, spacing } from '../theme';
-import { LinkAntiButton } from './UI/Button';
+import { LinkButton, LinkAntiButton } from './UI/Button';
 
 const tinyMax = `@media (max-width: ${screenSizes.tiny})`;
 const smallMax = `@media (max-width: ${screenSizes.small})`;
@@ -136,6 +136,21 @@ const textSection = css`
   }
 `;
 
+const contactBtn = css`
+    color: ${colors.typographic.violet};
+    border-color: ${colors.typographic.violet};
+    padding: .5rem 1rem;
+    border-radius: 50px;
+    height: 53px;
+    width: 320px;
+    
+    &:hover{
+      background-color: ${colors.typographic.violet};
+      color: ${colors.typographic.white};
+      border-color: ${colors.typographic.violet};
+    }
+`;
+
 const oneDate = new Date(2019, 0, 17, 23);
 const nbOfMsByDay = 24 * 60 * 60 * 1000;
 const formatter = new Intl.DateTimeFormat('fr-FR', {
@@ -148,6 +163,10 @@ const nbOfDays = (nowDate.valueOf() - oneDate.valueOf()) / nbOfMsByDay;
 const nextDate = new Date(oneDate);
 nextDate.setDate(nextDate.getDate() + Math.ceil(nbOfDays / 14) * 14);
 const nextDay = formatter.format(nextDate).toUpperCase();
+
+const styles ={
+  justifyContent: 'center'
+};
 
 const Home = () => {
   return (
@@ -248,6 +267,13 @@ const Home = () => {
           <p>Allez viens ! on est bien bien bien bien bien !</p>
         </div>
         <img src={Happiness} alt="" />
+      </section>
+
+      <section css={descriptionSection} style={styles}>
+        <div css={textSection}>
+          <h2>Une question, une suggestion ? </h2>
+          <LinkButton to="/content/contact">Contactez-nous</LinkButton>
+        </div>
       </section>
     </div>
   );
