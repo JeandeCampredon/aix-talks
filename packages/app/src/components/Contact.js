@@ -99,7 +99,7 @@ const Contact = () => {
     email : '',
     message : '',
     emailSent : false,
-    error : 'sfsfs'
+    error : null
   });
 
   const onFieldChange = (e) => {

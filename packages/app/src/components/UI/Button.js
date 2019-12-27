@@ -104,7 +104,7 @@ AntiButton.defaultProps = {
 // eslint-disable-next-line
 const ELink = props => {
   if(props.to) return <Link {...props} />;
-  if(props.type === "submit") return <button {...props} />;
+  else if(props.type === "submit") return <button {...props} />;
   else return <a {...props} />;
 };
 
