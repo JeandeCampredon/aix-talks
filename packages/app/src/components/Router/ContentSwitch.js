@@ -7,6 +7,7 @@ import { ClassNames, css } from '@emotion/core';
 
 import AixTalks from '../../../resources/icons/aix-talks.svg';
 import { colors } from '../../theme';
+import Contact from '../Contact';
 import Community from '../Community';
 import Demos from '../Demos';
 import Talks from '../Talks';
@@ -26,6 +27,11 @@ const TABS = [
     name: 'communauté',
     pathname: 'community',
     component: Community,
+  },
+  {
+    name: 'contact',
+    pathname: 'contact',
+    component: Contact,
   },
 ];
 
@@ -72,8 +78,8 @@ const ContentSwitch = ({ match }) => {
           `;
           return (
             <div css={menuClass}>
-              {TABS.map(({ pathname, name }) => (
-                <NavLink to={getPathname(match, pathname)} activeClassName={activeClass}>
+              {TABS.map(({ pathname, name }, index) => (
+                <NavLink key={index} to={getPathname(match, pathname)} activeClassName={activeClass}>
                   {name}
                 </NavLink>
               ))}
@@ -90,8 +96,8 @@ const ContentSwitch = ({ match }) => {
         }}
       </ClassNames>
       <Switch>
-        {TABS.map(({ pathname, name, component }) => (
-          <Route exact path={getPathname(match, pathname)} component={component || (() => name)} />
+        {TABS.map(({ pathname, name, component }, index) => (
+          <Route key={index} exact path={getPathname(match, pathname)} component={component || (() => name)} />
         ))}
         <Redirect path="*" to={getPathname(match, TABS[0].pathname)} />
       </Switch>
